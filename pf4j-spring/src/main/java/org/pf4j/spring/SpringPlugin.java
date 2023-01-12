@@ -45,6 +45,10 @@ public abstract class SpringPlugin extends Plugin {
         if ((applicationContext != null) && (applicationContext instanceof ConfigurableApplicationContext)) {
             ((ConfigurableApplicationContext) applicationContext).close();
         }
+
+        // 2023-01-13 Michael Junek - Fix issue where context is closed and can no longer be used. Set to null so a new one is created if need be.
+        applicationContext = null;
+
     }
 
     protected abstract ApplicationContext createApplicationContext();
